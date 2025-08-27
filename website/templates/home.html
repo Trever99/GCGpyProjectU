@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/stylesheet.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/menu.css') }}">
+
+  <style>
+    /* ===== SYNCED ANIMATION FOR MENU CONTENT ===== */
+    .menu-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateX(120%);
+      pointer-events: none;
+      transition: transform 1.2s ease, opacity 1.2s ease, filter 1.2s ease;
+      transition-delay: 0s;
+    }
+    .menu-content.active {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateX(0%);
+      pointer-events: all;
+      /* WAIT for morph to finish (1.2s) then fade in */
+      transition-delay: 1.2s;
+    }
+
+    /* Headings & Paragraph stagger like Sign-In page */
+    .menu-content h2,
+    .menu-content p {
+      transition: transform 1.2s ease, opacity 1.2s ease;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    .menu-content.active h2 {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.4s; /* After container morph */
+    }
+    .menu-content.active p {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.6s; /* Slightly later for stagger */
+    }
+
+    /* ===== SHAPE SWAP ANIMATION ===== */
+    .container.swap .curved-shape {
+      transform: rotate(0deg) skewY(0deg);
+      transition: 1.2s ease;
+      transition-delay: 0s;
+    }
+    .container.swap .curved-shape2 {
+      transform: rotate(-11deg) skewY(-41deg);
+      transition: 1.2s ease;
+      transition-delay: 0.2s; /* matches login page timing */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="curved-shape"></div>
+    <div class="curved-shape2"></div>
+
+    <!-- Left Side Buttons -->
+    <div class="menu-container">
+      <button class="btn menu-btn" data-target="register">Register Student</button>
+      <button class="btn menu-btn" data-target="search">Search Student</button>
+      <button class="btn menu-btn" data-target="logout">Log Out</button>
+    </div>
+
+    <!-- Right Side Content -->
+    <div class="info-content menu-content active" id="register">
+      <h2 class="animaion">Register Student</h2>
+      <p class="animaion">
+        Here you can add new student details into the system securely.
+        <a href="auth/sign-up" class="SignUpLink">proceed</a>
+      </p>
+    </div>
+
+    <div class="info-content menu-content" id="search">
+      <h2 class="animaion">Search Student</h2>
+      <p class="animaion">
+        Look up student records quickly and efficiently with advanced search tools.
+        <a href="/search" class="SignUpLink">proceed</a>
+      </p>
+    </div>
+
+    <div class="info-content menu-content" id="logout">
+      <h2 class="animaion">Log Out</h2>
+      <p class="animaion">
+        Securely log out of the system and protect your session.
+        <a href="auth/logout" class="SignUpLink">proceed</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const container = document.querySelector('.container');
+    document.querySelectorAll('.menu-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+
+        // Hide current content immediately
+        document.querySelectorAll('.menu-content').forEach(c => c.classList.remove('active'));
+
+        // Flip background shapes
+        container.classList.toggle('swap');
+
+        // Show new content after delay
+        setTimeout(() => {
+          target.classList.add('active');
+        }, 100); // tiny delay so transitions re-trigger
+      });
+    });
+  </script>
+</body>
+</html>
+
+{% endblock %}

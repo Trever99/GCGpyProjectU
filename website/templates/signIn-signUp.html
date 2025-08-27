@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% block title %}Sign-In-Page{% endblock %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TREVER99 IS COOKING</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/bootstrap.css') }}">
+     <!-- ONE OF THESE MFS DONT WORK -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <!-- MAKE LOGIN FORM , WILL BE MOVED TO SIGN UP PAGE -->
+     
+     <div class="container">
+        <div class="curved-shape"></div>    
+        <div class="curved-shape2"></div>
+        <div class="form-box Login">
+            <h2 class="animaion" style="--D:0; --S:21">Login</h2>
+            <form method="POST">
+                <div class="input-box animaion" style="--D:1; --S:22">  
+                    <input type="text" id="username" name="username" required>
+                    <label for="">Username</label>
+                    <i class='bx  bx-user'  ></i> 
+                </div>
+
+                <div class="input-box animaion" style="--D:2; --S:23">
+                    <input type="password" id="password" name="password"  required>
+                    <label for="">Password</label>
+                    <i class='bx  bx-lock'  ></i> 
+                </div>
+
+                <div class="input-box animaion" style="--D:3; --S:24">
+                    <button class="btn" type="submit">Login</button>
+                </div>
+
+                <div class="regi-link animaion" style="--D:4; --S:25">
+                    <p>Don't have an account ? <a href="#" class="SignUpLink">Sign Up</a></p>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="info-content Login" >
+            <h2 class="animaion" style="--D:0; --S:20">WELCOME BACK!</h2>
+            <P class="animaion" style="--D:1; --S:21">trever99, watashiwa sharingan daijobudesu rennegan baka subarashi hasjimemashite</P>
+        </div>
+          <!-- THIS IS THE REGISTER PAGE -->
+
+        <div class="form-box Register">
+            <h2 class="animaion" style="--li:17; --S:0;">Register</h2>
+            <form action="#">
+                <div class="input-box animaion" style="--li:18; --S:1;">
+                    <input type="text" id="usernameR" name="passwordR" required>
+                    <label for="">Username</label>
+                    <i class='bx  bx-user'  ></i> 
+                </div>
+
+                  <div class="input-box animaion" style="--li:19; --S:2;">  
+                    <input type="email" id="mail" name="mail" required>
+                    <label for="">Email</label>
+                    <i class='bx  bx-envelope'  ></i> 
+                </div>
+
+                <div class="input-box animaion" style="--li:20; --S:3;">
+                    <input type="password" id="passwordR" name="passwordR" required>
+                    <label for="">Password</label>
+                    <i class='bx  bx-lock'  ></i> 
+                </div>
+
+                <div class="input-box animaion" style="--li:21; --S:4;">
+                    <button class="btn" type="submit">Register</button>
+                </div>
+
+                <div class="regi-link animaion" style="--li:22; --S:5;">
+                    <p>Already have an account ? <a href="#" class="SignInLink">Sign In</a></p>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="info-content Register">
+            <h2 class="animaion" style="--li:17; --S:0;">WELCOME BACK!</h2>
+            <P class="animaion" style="--li:18; --S:1;">trever99, kar kir kur kur kur kar, caleloni dragni, garam maran daram matun tun madin din din tu</P>
+        </div>
+
+     </div>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+
+  </body>
+</html>
+
+{% endblock%}
+

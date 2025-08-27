@@ -1,0 +1,64 @@
+/* Make container a positioning context */
+.container {
+  position: relative;  
+}
+
+/* Alerts float in the top-right corner of the container */
+.alert {
+  position: absolute;   /* take out of normal flow */
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+
+  padding: 1rem 2.5rem 1rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  max-width: 300px;
+
+  /* Animation */
+  animation:
+    fade-in 0.3s ease-out,
+    fade-out 0.5s ease-in 4s forwards; /* auto-hide after 4s */
+}
+
+/* Danger alert */
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+/* Success alert */
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+/* Close button */
+.btn-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+.btn-close:hover {
+  opacity: 0.7;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-out {
+  to { opacity: 0; transform: translateY(-10px); visibility: hidden; }
+}

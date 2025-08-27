@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheet/bootstrap.css') }}"
+    />
+
+
+    <title>{% block title %}Base{% endblock %}</title>
+  </head>
+
+  <body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissable show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissable show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+  
+    <div class = "container">
+
+     {% block content %} 
+     
+     {% endblock %}
+
+    </div>
+    
+     
+
+      
+  </body>
+</html>

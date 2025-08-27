@@ -1,0 +1,80 @@
+.menu-container {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 20px;
+}
+
+.menu-container .btn {
+  width: 200px;
+  text-align: center;
+}
+
+/* Content Panels */
+.menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: right;            /* align like original */
+  padding: 0 40px 60px 150px;   /* inward spacing from right */
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateX(120%);
+  transition: .7s ease;
+  pointer-events: none;
+}
+
+.menu-content.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0%);
+  pointer-events: auto;
+}
+
+.menu-content h2 {
+  font-size: 32px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.menu-content p {
+  font-size: 16px;
+}
+
+/* Morph effect borrowed from login/register */
+.container.morphed .curved-shape {
+  transform: rotate(0deg) skewY(0deg);
+  transition: 1.5s ease;
+  transition-delay: .5s;
+}
+
+.container.morphed .curved-shape2 {
+  transform: rotate(-11deg) skewY(-41deg);
+  transition: 1.5s ease;
+  transition-delay: 1.2s;
+}
+
+/* Reset morph (back to original) */
+.container:not(.morphed) .curved-shape {
+  transform: rotate(10deg) skewY(40deg);
+  transition: 1.5s ease;
+  transition-delay: 1.6s;
+}
+
+.container:not(.morphed) .curved-shape2 {
+  transform: rotate(0deg) skewY(0deg);
+  transition: 1.5s ease;
+  transition-delay: .5s;
+}

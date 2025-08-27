@@ -1,0 +1,193 @@
+{% extends "base.html" %} {% block title %}Student-Search{% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Student</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/stylesheet.css') }}">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    .SearchStudent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 83px 40px 40px;  
+      overflow: hidden;   
+      z-index: 2;
+    }
+
+    .SearchStudent h2 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .SearchStudent form {
+      display: flex;
+      flex-direction: column;
+      height: 100%; 
+    }
+
+    .SearchStudent .input-box {
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    /* Table wrapper for scrolling */
+    .table-container {
+      margin-top: 20px;
+       max-height: 140px; /*TABLE HIEGHT */
+      overflow-y: auto;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 39, 112, 0.4);
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .table-container::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: #ff2770;
+      border-radius: 4px;
+    }
+    .table-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .ResultsTable {
+      width: 100%;
+      border-collapse: collapse;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .ResultsTable th,
+    .ResultsTable td {
+      border-bottom: 1px solid rgba(255, 39, 112, 0.4);
+      padding: 6px 10px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .ResultsTable th {
+      color: #ff2770;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .ResultsTable tr:hover {
+      background: rgba(255, 39, 112, 0.1);
+      transition: 0.3s;
+    }
+
+    .form-actions {
+      margin-top: auto;
+    }
+
+    /* 🔥 Morphing animation */
+    .container.morph .curved-shape {
+      transform: translateX(100%);
+      transition: transform 1s ease-in-out;
+    }
+
+    .container.morph .curved-shape2 {
+      transform: translateX(-100%);
+      transition: transform 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="curved-shape"></div>
+    <div class="curved-shape2"></div>
+
+    <!-- Search form -->
+    <div class="form-box SearchStudent">
+      <h2>Search Student</h2>
+
+      <form method="POST" action="{{ url_for('views.specific') }}">
+        <div class="input-box">
+          <input type="text" id="data" name="data"  placeholder="Roll Nr, Name, Phone Nr...">
+          <label>Student Data?</label>
+          <i class='bx bx-search'></i>
+        </div>
+
+        <div class="table-container">
+          <table class="ResultsTable">
+            <thead>
+              <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+             <!-- tHIS IS WHERE THE STUDENTS WILL BE DISPLAYED -->
+      <tbody>
+        {% if details %}
+
+        {% for s in details %}
+       <tr>
+                <td>{{s.rollnr}}</td>
+                <td>{{ s.firstname }}</td>
+                <td>{{ s.lastname }}</td>
+                <td>{{ s.age }}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.phonenr }}</td>
+                <td>{{ s.gender }}</td>
+          
+            </tr>
+             {% else %}
+    <tr>
+      <td colspan="4">No students found in database</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+      <td colspan="4">No students found in database</td>
+      {% endif %}
+      </tbody>
+          </table>
+        </div>
+
+        <div class="input-box form-actions">
+          <button class="btn" type="submit" id="searchBtn">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="info-content Login" >
+            <h2 class="animaion" style="--D:0; --S:20">Student Search</h2>
+            <P class="animaion" style="--D:1; --S:21">trever99, watashiwa sharingan daijobudesu rennegan baka subarashi hasjimemashite<a href="/" class="SignUpLink">  Back</a></P>
+        </div>
+
+  </div>
+
+  <script>
+    const container = document.querySelector('.container');
+    const searchBtn = document.getElementById('searchBtn');
+
+    searchBtn.addEventListener('click', () => {
+      container.classList.add('morph');
+      setTimeout(() => {
+        container.classList.remove('morph');
+      }, 1000); // reset after animation
+    });
+  </script>
+</body>
+</html>
+
+{% endblock %}

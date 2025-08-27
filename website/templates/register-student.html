@@ -1,0 +1,162 @@
+{% extends "base.html" %} {% block title %}Student-Register{% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register Student</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheet/stylesheet.css') }}"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .RegisterStudent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 79px 40px 40px; /* same as SearchStudent for button alignment */
+        z-index: 2;
+      } /* Title styled like original */
+      .RegisterStudent h2 {
+        margin-bottom: 20px;
+        font-size: 32px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+      } /* Scrollable table container */
+      .table-container {
+        max-height: 180px; /* bigger for nicer look */
+        overflow-y: auto;
+        border: 1px solid rgba(255, 39, 112, 0.4);
+        border-radius: 6px;
+        padding: 10px;
+        margin-bottom: 20px;
+      } /* scrollbar styling */
+      .table-container::-webkit-scrollbar {
+        width: 6px;
+      }
+      .table-container::-webkit-scrollbar-thumb {
+        background: #ff2770;
+        border-radius: 4px;
+      }
+      .table-container::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      table.RegisterTable {
+        width: 100%;
+        border-collapse: collapse;
+        color: #fff;
+      }
+      table.RegisterTable td {
+        padding: 10px;
+        vertical-align: middle;
+      }
+      .RegisterStudent .input-box {
+        margin-top: 0;
+        width: 100%;
+      } /* Remove number input arrows */
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      } /* Button spacing */
+      .form-actions {
+        text-align: center;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="curved-shape"></div>
+      <div class="curved-shape2"></div>
+      <div class="form-box RegisterStudent">
+        <h2>Register Students</h2>
+        <form method="POST">
+          <div class="table-container">
+            <table class="RegisterTable">
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="text" id="name" name="name" required /> <label>Name</label>
+                    <i class="bx bx-user"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="text" id="surname" name="surname" required /> <label>Surname</label>
+                    <i class="bx bx-user"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="text" id="rollnr" name="rollnr" required /> <label>Roll Number</label>
+                    <i class="bx bx-id-card"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="number" id="age" name="age" required /> <label>Age</label>
+                    <i class="bx bx-cake"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="email" id="mail" name="mail" required /> <label>Email</label>
+                    <i class="bx bx-envelope"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="tel" id="phonenr" name="phonenr" required /> <label>Phone Number</label>
+                    <i class="bx bx-phone"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="input-box">
+                    <input type="text" id="gender" name="gender" required /> <label>Gender</label>
+                    <i class="bx bx-male-female"></i>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+
+       <div class="info-content Login" >
+            <h2 class="animaion" style="--D:0; --S:20">Register Student</h2>
+            <P class="animaion" style="--D:1; --S:21">trever99, watashiwa sharingan daijobudesu rennegan baka subarashi hasjimemashite<a href="/" class="SignUpLink">  Back</a></P>
+        </div>
+
+    </div>
+  </body>
+</html>
+
+{% endblock%}
